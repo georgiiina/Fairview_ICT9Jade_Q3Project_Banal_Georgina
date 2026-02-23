@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BiyaHero - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url(https://awesomewave.net/wp-content/uploads/Singapore-MRT.png);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+        .navbar { background-color: rgba(255,255,255,0.9) !important; }
+        .footer { background: #111; color: white; padding: 30px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="Q3Project.html">BIYAHERO</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="Q3Project.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-dark text-black ms-lg-3" href="3QPage2.html">SIGN UP</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg text-center">
+        <div class="container">
+            <h1 class="display-1 fw-bold">BiyaHero</h1>
+            <p class="lead">Heavy Traffic? Calculate your MRT Line 3 ride fare below.</p>
+        </div>
+    </header>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow border-0">
+                    <h3>Fare Calculator</h3>
+                    <p class="text-muted">Route: North Avenue - Taft Avenue</p>
+                    <hr>
+                    <label>Distance (KM):</label>
+                    <input type="number" id="userKM" class="form-control mb-3" placeholder="Enter distance">
+                    
+                    <div class="form-check mb-3">
+                        <input type="checkbox" id="isDisc" class="form-check-input">
+                        <label class="form-check-label">Student/Senior/PWD (20% Off)</label>
+                    </div>
+                    
+                    <button class="btn btn-dark w-100 py-2" onclick="calculateFare()">Get Total Fare</button>
+                    
+                    <div class="mt-4 p-3 bg-light rounded">
+                        <h4 class="mb-0">Total: <span id="finalPrice" class="text-primary">Php0.00</span></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 border-0">
+                    <h3>Standard Rates</h3>
+                    <table class="table mt-3">
+                        <tr><td>Base Fare (First 2KM)</td><td class="text-end">Php50.00</td></tr>
+                        <tr><td>Per KM (Beyond 2KM)</td><td class="text-end">Php15.00</td></tr>
+                        <tr><td>Discount</td><td class="text-end">-20%</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-1">BiyaHero | Grade 9 - Jade</p>
+            <p class="small text-muted">
+               <a href="https://www.metrolinemap.com/metro/manila/" class="text-info text-decoration-none">Metro Map</a></p>
+            <p class="small text-muted">
+                <a href="https://www.w3schools.com/" class="text-info text-decoration-none">Code Sources</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateFare() {
+            var basefare = 50; 
+            var perKMrate = 15;
+            var baseKM = 2;
+            
+            var distance = document.getElementById("userKM").value;
+            var isDiscounted = document.getElementById("isDisc").checked;
+            var total = 0;
+
+            if (distance <= baseKM) {
+                total = basefare;
+            } else {
+                total = basefare + ((distance - baseKM) * perKMrate);
+            }
+
+            if (isDiscounted == true) {
+                total = total * 0.80; 
+            }
+
+            document.getElementById("finalPrice").innerHTML = "Php" + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>
