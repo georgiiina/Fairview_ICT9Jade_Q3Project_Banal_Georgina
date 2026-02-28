@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BiyaHero - Home</title>
+    <title>BiyaHero - Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            margin-right: 10px; 
+            vertical-align: middle;
+        }
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url(https://awesomewave.net/wp-content/uploads/Singapore-MRT.png);
@@ -15,17 +20,28 @@
         }
         .navbar { background-color: rgba(255,255,255,0.9) !important; }
         .footer { background: #111; color: white; padding: 30px 0; }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="Q3Project.html">BIYAHERO</a>
-            <div class="collapse navbar-collapse">
+            <a class="navbar-brand fw-bold" href="Q3Project.html">
+                <img src="Biyahero.png" alt="Logo" class="brand-logo" style="height: 35px; width: auto; margin-right: 10px;">
+                BIYAHERO
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="Q3Project.html">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-dark text-black ms-lg-3" href="3QPage2.html">SIGN UP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="3Qhome.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="3QPage1.html">CALCULATOR</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-dark text-white ms-lg-3" href="3QPage2.html">SIGN UP</a></li>
                 </ul>
             </div>
         </div>
@@ -43,25 +59,67 @@
             <div class="col-md-6 mb-4">
                 <div class="card p-4 shadow border-0">
                     <h3>Fare Calculator</h3>
-                    <p class="text-muted">Route: North Avenue - Taft Avenue</p>
                     <hr>
-                    <label>Distance (KM):</label>
-                    <input type="number" id="userKM" class="form-control mb-3" placeholder="Enter distance">
                     
+                    <label>Pick-up Station:</label>
+                    <select id="pickup" class="form-control mb-3">
+                        <option value="0">North Avenue</option>
+                        <option value="2">Quezon Avenue</option>
+                        <option value="4">Kamuning</option>
+                        <option value="7">Cubao</option>
+                        <option value="9">Santolan</option>
+                        <option value="11">Ortigas</option>
+                        <option value="13">Shaw Blvd</option>
+                        <option value="15">Boni</option>
+                        <option value="17">Taft Avenue</option>
+                    </select>
+
+                    <label>Drop-off Station:</label>
+                    <select id="dropoff" class="form-control mb-3">
+                        <option value="0">North Avenue</option>
+                        <option value="2">Quezon Avenue</option>
+                        <option value="4">Kamuning</option>
+                        <option value="7">Cubao</option>
+                        <option value="9">Santolan</option>
+                        <option value="11">Ortigas</option>
+                        <option value="13">Shaw Blvd</option>
+                        <option value="15">Boni</option>
+                        <option value="17" selected>Taft Avenue</option>
+                    </select>
+
                     <div class="form-check mb-3">
-                        <input type="checkbox" id="isDisc" class="form-check-input">
+                        <input type="checkbox" id="disc" class="form-check-input">
                         <label class="form-check-label">Student/Senior/PWD (20% Off)</label>
                     </div>
                     
                     <button class="btn btn-dark w-100 py-2" onclick="calculateFare()">Get Total Fare</button>
                     
                     <div class="mt-4 p-3 bg-light rounded">
-                        <h4 class="mb-0">Total: <span id="finalPrice" class="text-primary">Php0.00</span></h4>
+                        <h4 class="mb-0">Total: <span id="DisplayAns" class="text-primary">P 0.00</span></h4>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6">
+                <div class="card p-4 border-0 shadow-sm mb-4">
+                    <h3>Fare Matrix</h3>
+                    <table class="table table-striped small">
+                        <thead>
+                            <tr>
+                                <th>From North Ave To:</th>
+                                <th>Distance</th>
+                                <th>Fare</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Quezon Ave</td><td>2 KM</td><td>Php50.00</td></tr>
+                            <tr><td>Cubao</td><td>7 KM</td><td>Php125.00</td></tr>
+                            <tr><td>Ortigas</td><td>11 KM</td><td>Php185.00</td></tr>
+                            <tr><td>Taft Avenue</td><td>17 KM</td><td>Php275.00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="card p-4 border-0">
                     <h3>Standard Rates</h3>
                     <table class="table mt-3">
@@ -74,38 +132,37 @@
         </div>
     </div>
 
-    <footer class="footer text-center">
-        <div class="container">
-            <p class="mb-1">BiyaHero | Grade 9 - Jade</p>
-            <p class="small text-muted">
-               <a href="https://www.metrolinemap.com/metro/manila/" class="text-info text-decoration-none">Metro Map</a></p>
-            <p class="small text-muted">
-                <a href="https://www.w3schools.com/" class="text-info text-decoration-none">Code Sources</a>
-            </p>
-        </div>
-    </footer>
+
+      <footer class="footer text-center">
+    <div class="container">
+        <p class="mb-1">BiyaHero | Grade 9 - Jade</p>
+        <p class="small text-muted">
+           <a href="https://www.metrolinemap.com/metro/manila/" class="text-info text-decoration-none">Metro Map</a></p>
+        <p class="small text-muted">
+            <a href="https://www.w3schools.com/" class="text-info text-decoration-none">Code Sources</a>
+        </p>
+    </div>
+</footer>
 
     <script>
         function calculateFare() {
-            var basefare = 50; 
-            var perKMrate = 15;
-            var baseKM = 2;
+            let pickup, dropoff, basefare, baseKM, perKMrate, distance, extraKM, discount;
             
-            var distance = document.getElementById("userKM").value;
-            var isDiscounted = document.getElementById("isDisc").checked;
-            var total = 0;
+            pickup = parseFloat(document.getElementById("pickup").value); 
+            dropoff = parseFloat(document.getElementById("dropoff").value);
+            basefare = 50; 
+            perKMrate = 15; 
+            baseKM = 2; 
+            discount = document.getElementById("disc").checked; 
+            distance = Math.max(Math.abs(dropoff - pickup), 0);
+            extraKM = Math.max(distance - baseKM, 0); 
 
-            if (distance <= baseKM) {
-                total = basefare;
-            } else {
-                total = basefare + ((distance - baseKM) * perKMrate);
-            }
+         
+            let fare = basefare + extraKM * perKMrate; 
 
-            if (isDiscounted == true) {
-                total = total * 0.80; 
-            }
-
-            document.getElementById("finalPrice").innerHTML = "Php" + total.toFixed(2);
+         
+            fare = fare * (1 - 0.2 * discount); 
+            document.getElementById("DisplayAns").innerHTML = "P " + fare.toFixed(2);
         }
     </script>
 </body>
