@@ -68,8 +68,9 @@
                     <center>
                         <img src="https://braverplayers.org/wp-content/uploads/2022/09/blank-pfp.png" width="120px" height="120px" id="pfp">
                         <div class="mb-3">
-                            <button type="button" class="btn btn-outline-dark btn-sm">Upload Photo</button>
-                            <button type="button" class="btn btn-outline-secondary btn-sm">Remove</button>
+                            <input type="file" class="form-control d-none" id="fileupload">
+                            <button class="btn btn-outline-primary btn-sm" onclick="document.getElementById('fileupload').click();">Upload Photo</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="pfpfinish()">Remove</button>
                         </div>
                         
                         <details class="mb-4">
@@ -119,6 +120,21 @@
 
     <script>
         document.getElementById('instructions').innerHTML = 'Please fill out all fields correctly. Ensure your email is active for verification.';
+
+        function pfpfinish() {
+            document.getElementById('pfp').src = 'https://braverplayers.org/wp-content/uploads/2022/09/blank-pfp.png';
+        }
     </script>
+
+      <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-1">BiyaHero | Grade 9 - Jade</p>
+            <p class="small text-muted">
+               <a href="https://www.metrolinemap.com/metro/manila/" class="text-info text-decoration-none">Metro Map</a> | 
+               <a href="https://www.w3schools.com/" class="text-info text-decoration-none">Code Sources</a>
+            </p>
+        </div>
+    </footer>
+    
 </body>
 </html>
